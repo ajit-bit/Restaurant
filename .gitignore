@@ -1,0 +1,26 @@
+# Root-level ignores (backend/frontend have their own .gitignore too)
+
+# Laravel
+backend/.env
+backend/.env.*
+backend/storage/
+backend/bootstrap/cache/
+backend/database/*.sqlite
+backend/vendor/
+backend/node_modules/
+
+# Next.js
+frontend/.env.local
+frontend/.env.*
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+
+# Cursor / editor artifacts
+.cursor/
+.vscode/
+
+# Misc
+*.log
+Thumbs.db
+

@@ -1,0 +1,18 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use App\Models\Order;
+
+class OrderSeeder extends Seeder
+{
+    public function run()
+    {
+        $data = json_decode(file_get_contents(database_path('data/orders.json')), true);
+
+        foreach ($data as $item) {
+            Order::create($item);
+        }
+    }
+}
