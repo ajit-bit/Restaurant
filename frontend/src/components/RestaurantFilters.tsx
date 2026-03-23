@@ -18,84 +18,94 @@ export default function RestaurantFilters(props: {
   const { values, onChange, onApply } = props;
 
   return (
-    <div className="flex flex-col gap-3 bg-white/70 dark:bg-black/50 border border-black/10 rounded-sm p-4">
-      <div className="flex flex-col sm:flex-row gap-3">
-        <label className="flex flex-col gap-1 flex-1">
-          <span className="text-sm">Search</span>
+    <div className="space-y-6">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <label className="block">
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+            🔍 Search Restaurant
+          </span>
           <input
-            className="border border-black/10 rounded-sm px-3 py-2"
+            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
             value={values.search}
             onChange={(e) => onChange({ ...values, search: e.target.value })}
-            placeholder="Restaurant name"
+            placeholder="e.g. Pizza Palace"
           />
         </label>
-        <label className="flex flex-col gap-1 flex-1">
-          <span className="text-sm">Cuisine</span>
+        <label className="block">
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+            🍽️ Cuisine Type
+          </span>
           <input
-            className="border border-black/10 rounded-sm px-3 py-2"
+            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
             value={values.cuisine}
             onChange={(e) => onChange({ ...values, cuisine: e.target.value })}
-            placeholder="e.g. Italian"
+            placeholder="e.g. Italian, Chinese"
           />
         </label>
-        <label className="flex flex-col gap-1 flex-1">
-          <span className="text-sm">Location</span>
+        <label className="block">
+          <span className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+            📍 Location
+          </span>
           <input
-            className="border border-black/10 rounded-sm px-3 py-2"
+            className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
             value={values.location}
             onChange={(e) =>
               onChange({ ...values, location: e.target.value })
             }
-            placeholder="e.g. Delhi"
+            placeholder="e.g. New York, Mumbai"
           />
         </label>
       </div>
 
-      <div className="flex flex-col sm:flex-row gap-3">
-        <label className="flex flex-col gap-1">
-          <span className="text-sm">Sort By</span>
-          <select
-            className="border border-black/10 rounded-sm px-3 py-2"
-            value={values.sort_by}
-            onChange={(e) =>
-              onChange({
-                ...values,
-                sort_by: e.target.value as RestaurantFiltersValues["sort_by"],
-              })
-            }
-          >
-            <option value="name">Name</option>
-            <option value="location">Location</option>
-            <option value="cuisine">Cuisine</option>
-            <option value="id">ID</option>
-          </select>
-        </label>
+      <div className="flex flex-col sm:flex-row gap-4 items-end">
+        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <label className="block">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+              📊 Sort By
+            </span>
+            <select
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+              value={values.sort_by}
+              onChange={(e) =>
+                onChange({
+                  ...values,
+                  sort_by: e.target.value as RestaurantFiltersValues["sort_by"],
+                })
+              }
+            >
+              <option value="name">Restaurant Name</option>
+              <option value="location">Location</option>
+              <option value="cuisine">Cuisine Type</option>
+              <option value="id">Restaurant ID</option>
+            </select>
+          </label>
 
-        <label className="flex flex-col gap-1">
-          <span className="text-sm">Sort Direction</span>
-          <select
-            className="border border-black/10 rounded-sm px-3 py-2"
-            value={values.sort_dir}
-            onChange={(e) =>
-              onChange({
-                ...values,
-                sort_dir: e.target.value as RestaurantFiltersValues["sort_dir"],
-              })
-            }
-          >
-            <option value="asc">Ascending</option>
-            <option value="desc">Descending</option>
-          </select>
-        </label>
-
-        <div className="flex items-end">
-          <button
-            className="bg-black text-white rounded-sm px-4 py-2 text-sm"
-            onClick={onApply}
-          >
-            Apply
-          </button>
+          <label className="block">
+            <span className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2 block">
+              ↕️ Sort Order
+            </span>
+            <select
+              className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent dark:bg-gray-700 dark:text-white transition-all"
+              value={values.sort_dir}
+              onChange={(e) =>
+                onChange({
+                  ...values,
+                  sort_dir: e.target.value as RestaurantFiltersValues["sort_dir"],
+                })
+              }
+            >
+              <option value="asc">A to Z / Low to High</option>
+              <option value="desc">Z to A / High to Low</option>
+            </select>
+          </label>
         </div>
+
+        <button
+          className="w-full sm:w-auto px-8 py-3 bg-gradient-to-r from-red-600 to-orange-600 text-white font-medium rounded-lg hover:from-red-700 hover:to-orange-700 transition-all transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 shadow-lg"
+          onClick={onApply}
+        >
+          🔎 Apply Filters
+        </button>
       </div>
     </div>
   );
